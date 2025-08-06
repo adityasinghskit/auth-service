@@ -16,11 +16,10 @@ public class Privileges extends Auditable {
     private String description;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "privilege")
     private List<ApiPrivileges> apiPrivileges;
-    @JsonIgnoreProperties("privileges")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userGroup", referencedColumnName = "name")
-    private UserGroups userGroup;
-
+//    @JsonIgnoreProperties("privileges")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "userGroup", referencedColumnName = "name")
+//    private UserGroups userGroup;
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "userId", referencedColumnName = "userId")
 //    private Users user;

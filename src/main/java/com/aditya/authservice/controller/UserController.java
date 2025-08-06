@@ -1,5 +1,7 @@
 package com.aditya.authservice.controller;
 
+import com.aditya.authservice.dto.RegisterGroup;
+import com.aditya.authservice.dto.RegisterPrivilege;
 import com.aditya.authservice.dto.RegisterRequest;
 import com.aditya.authservice.service.UserService;
 import jakarta.validation.Valid;
@@ -14,11 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-
     private final UserService usersService;
+
     @PostMapping(value = "/signup", produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> signupUser(@Valid @RequestBody RegisterRequest requestBody){
         usersService.createUserWithPassword(requestBody);
         return ResponseEntity.ok("User created successfully");
+    }
+
+    @PostMapping(value = "/create/group", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<?> createGroup(@Valid @RequestBody RegisterGroup requestBody){
+        usersService.createUserGroup(requestBody);
+        return ResponseEntity.ok("User Group created successfully");
+    }
+
+    @PostMapping(value = "/create/privilege", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<?> createPrivilege(@Valid @RequestBody RegisterPrivilege requestBody){
+        usersService.createPrivilege(requestBody);
+        return ResponseEntity.ok("User Privilege created successfully");
     }
 }

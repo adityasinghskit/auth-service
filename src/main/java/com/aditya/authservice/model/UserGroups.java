@@ -20,7 +20,15 @@ public class UserGroups extends Auditable {
     @Column(unique = true)
     private String name;
     private String description;
-    @JsonIgnoreProperties("userGroup")
-    @OneToMany(mappedBy = "userGroup", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JsonIgnoreProperties("userGroup")
+//    @OneToMany(mappedBy = "userGroup", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<Privileges> privileges;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_group_privileges",
+            joinColumns = @JoinColumn(name = "name"),
+            inverseJoinColumns = @JoinColumn(name = "privilege_name")
+    )
+    @NotEmpty(message = "Privileges cannot be empty")
     private List<Privileges> privileges;
 }
